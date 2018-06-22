@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                         startActivity(intent);
                                         break;
 
-            case R.id.registrarse :     intent = new Intent(this, Registrar.class);
+            case R.id.registrarse :     intent = new Intent(this, FormularioRegistrar.class);
                                         startActivity(intent);
                                         break;
         }
