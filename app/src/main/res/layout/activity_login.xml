@@ -49,11 +49,11 @@
 
     <Button
         android:id="@+id/botonIngresar"
-        android:layout_width="106dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/signInButton"
+        android:layout_marginTop="204dp"
         android:background="@color/botonIngresar"
         android:drawableLeft="@drawable/ingresar"
         android:drawablePadding="2dp"
@@ -68,9 +68,37 @@
         android:layout_height="29dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="194dp"
         android:text="¿Eres nuevo?, regístrate"
         android:textColor="?attr/colorPrimaryDark"
         android:textSize="18sp" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="74dp"
+        android:layout_alignEnd="@+id/registrarse"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="128dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/signInButton"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/loginButton"
+        android:layout_marginBottom="69dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminate="true"
+        android:visibility="gone" />
 
 </RelativeLayout>
