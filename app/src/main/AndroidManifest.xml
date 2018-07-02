@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Login"
+            android:name=".DatosPersonales"
             android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,16 +24,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DatosPersonales"
+            android:name=".Login"
             android:label="Datos Personales" />
-        <activity android:name=".Calorias" />
+        <activity android:name=".Vegetales" />
         <activity
-            android:name=".Vegetales"
+            android:name=".Calorias"
             android:label="Vegetales"
             android:parentActivityName=".Calorias">
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Calorias" />
+
+
         </activity>
 
         <meta-data

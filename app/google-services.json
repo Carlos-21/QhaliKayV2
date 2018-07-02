@@ -8,6 +8,37 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:393573348923:android:8f2d7d91636cce09",
+        "android_client_info": {
+          "package_name": "com.example.avance.myapplication2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393573348923-p1880ul8t8orpo310c37i8o7lip4j2j8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQQbX1gjD4gYwRhe5wj3g-o_BVpZQHbnE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:393573348923:android:d66a833e635487f0",
         "android_client_info": {
           "package_name": "com.example.avance.qhalikayv2"
@@ -23,8 +54,20 @@
           }
         },
         {
-          "client_id": "393573348923-p1880ul8t8orpo310c37i8o7lip4j2j8.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "393573348923-q3g1cefkuvtrgk36ae4gge8hq8pugmi9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.avance.qhalikayv2",
+            "certificate_hash": "f843c2c5f749d69bd4a5c0d75613a050736985f7"
+          }
+        },
+        {
+          "client_id": "393573348923-btc39o145661pdu55uf9djkjritr5a36.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.avance.qhalikayv2",
+            "certificate_hash": "06f8ba980d6cb9c462233e6d9c081dd630c3a1ac"
+          }
         },
         {
           "client_id": "393573348923-p1880ul8t8orpo310c37i8o7lip4j2j8.apps.googleusercontent.com",

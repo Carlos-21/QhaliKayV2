@@ -9,4 +9,7 @@
     <color name="botones">#cccccc</color>
     <color name="botonSeleccionado">#9fc5f8</color>
     <color name="labelTexto">#e06666</color>
+    <color name="barra1">#0000ff </color>
+    <color name="barra2">#800000</color>
+    <color name="barra3">#CD5C5C</color>
 </resources>

@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Componente.AlimentoDAO;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Carta;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IAlimentoDAO;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -20,12 +23,15 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 public class Calorias extends AppCompatActivity implements View.OnClickListener {
     private ImageView[] imagenVegetal =new ImageView[5];
+    private TextView[] textoVegetal = new TextView[5];
+    private ArrayList<Carta> cartas;
+    private IAlimentoDAO modelo = new AlimentoDAO();
     private TextView vegetales;
-    private StorageReference storage;
-    private DatabaseReference data ;
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +39,30 @@ public class Calorias extends AppCompatActivity implements View.OnClickListener 
 
         setContentView(R.layout.activity_calorias);
 
-        //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        inicializar();
 
-        storage = FirebaseStorage.getInstance().getReference();
-        //data = FirebaseDatabase.getInstance().getReference();
+        vegetales = (TextView)findViewById(R.id.vegetalesMas);
+        vegetales.setOnClickListener(this);
+
+        mostrarComponentes();
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = null;
+        switch (v.getId()){
+            case R.id.vegetalesMas : intent = new Intent(this, Vegetales.class);
+                                     startActivity(intent);
+                                     break;
+            case R.id.brocoli :   llamarActividadVegetales(intent, cartas.get(0));
+                                  break;
+        }
+    }
+
+    private void inicializar(){
+        cartas = new ArrayList<>();
 
         imagenVegetal[0] = (ImageView)findViewById(R.id.brocoli);
         imagenVegetal[0].setOnClickListener(this);
@@ -49,57 +75,37 @@ public class Calorias extends AppCompatActivity implements View.OnClickListener 
         imagenVegetal[4] = (ImageView)findViewById(R.id.pimiento);
         imagenVegetal[4].setOnClickListener(this);
 
+        textoVegetal[0] = (TextView)findViewById(R.id.textoVegetal);
+        textoVegetal[1] = (TextView)findViewById(R.id.textoVegetal2);
+        textoVegetal[2] = (TextView)findViewById(R.id.textoVegetal3);
+        textoVegetal[3] = (TextView)findViewById(R.id.textoVegetal4);
+        textoVegetal[4] = (TextView)findViewById(R.id.textoVegetal5);
 
-        vegetales = (TextView)findViewById(R.id.vegetalesMas);
-        vegetales.setOnClickListener(this);
+        int i = 0;
+        while(i<5){
+            Carta auxiliar = new Carta();
+            auxiliar.setFoto(imagenVegetal[i]);
+            auxiliar.setTexto(textoVegetal[i]);
 
-        mostrarFoto();
+            cartas.add(auxiliar);
 
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.vegetalesMas : Intent intent = new Intent(this, Vegetales.class);
-                                     startActivity(intent);
-                                     break;
-            case R.id.brocoli :   Intent intent2 = new Intent(this, Vegetales.class);
-                                  startActivity(intent2);
-                                  break;
+            i++;
         }
+
     }
 
-    public void mostrarFoto(){
-        StorageReference vegetal1 = storage.child("Vegetales/brocoli.jpg");
-        StorageReference vegetal2 = storage.child("Vegetales/berenjena.jpg");
-        StorageReference vegetal3 = storage.child("Vegetales/zanahoria.jpg");
-        StorageReference vegetal4 = storage.child("Vegetales/espinaca.jpg");
-        StorageReference vegetal5 = storage.child("Vegetales/pimiento.jpg");
+    private void mostrarComponentes(){
+        modelo.mostrarVegetales(cartas, this);
+    }
 
-        Glide.with(Calorias.this)
-                .using(new FirebaseImageLoader())
-                .load(vegetal1)
-                .into(imagenVegetal[0]);
+    private void llamarActividadVegetales(Intent intent, Carta carta){
+        intent = new Intent(this, Vegetales.class);
 
-        Glide.with(Calorias.this)
-                .using(new FirebaseImageLoader())
-                .load(vegetal2)
-                .into(imagenVegetal[1]);
+        intent.putExtra("imagen", (Serializable) carta.getFoto());
+        intent.putExtra("caloria",carta.getAlimento().getCaloria());
+        intent.putExtra("grasa",carta.getAlimento().getGrasa());
+        intent.putExtra("proteina",carta.getAlimento().getProteina());
 
-        Glide.with(Calorias.this)
-                .using(new FirebaseImageLoader())
-                .load(vegetal3)
-                .into(imagenVegetal[2]);
-
-        Glide.with(Calorias.this)
-                .using(new FirebaseImageLoader())
-                .load(vegetal4)
-                .into(imagenVegetal[3]);
-
-        Glide.with(Calorias.this)
-                .using(new FirebaseImageLoader())
-                .load(vegetal5)
-                .into(imagenVegetal[4]);
+        startActivity(intent);
     }
 }

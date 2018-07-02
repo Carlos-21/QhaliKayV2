@@ -63,4 +63,76 @@
             app:srcCompat="@drawable/salir" />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/barra1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="195dp"
+        android:layout_toStartOf="@+id/barra3"
+        android:progress="50"
+        android:progressDrawable="@drawable/barra"/>
+
+    <ProgressBar
+        android:id="@+id/barra2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/barra1"
+        android:layout_toEndOf="@+id/barra3"
+        android:progress="50"
+        android:progressDrawable="@drawable/barra2" />
+
+    <ProgressBar
+        android:id="@+id/barra3"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp"
+        android:progress="50"
+        android:progressDrawable="@drawable/barra3" />
+
+    <ImageView
+        android:id="@+id/fotoVegetal"
+        android:layout_width="138dp"
+        android:layout_height="138dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/textView7"
+        android:layout_marginStart="73dp"
+        android:text="Grasa"
+        android:textColor="@android:color/background_dark" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="219dp"
+        android:layout_toEndOf="@+id/fotoVegetal"
+        android:text="Calorías"
+        android:textColor="@android:color/background_dark" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp"
+        android:text="Proteína"
+        android:textColor="@android:color/background_dark" />
+
 </RelativeLayout>
