@@ -1,8 +1,12 @@
 package com.example.avance.qhalikayv2;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -16,6 +20,7 @@ public class Vegetales extends AppCompatActivity {
     private Integer caloria;
     private Integer proteina;
     private Integer grasa;
+    private boolean bandera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +42,35 @@ public class Vegetales extends AppCompatActivity {
             proteina = (Integer) bun.get("proteina");
         }
 
-        Nutricion nutricion = new Nutricion(barra1, barra2, barra3);
-        nutricion.mostrarDatosNutricionales(caloria,proteina,grasa);
+        bandera = false;
+        /*Nutricion nutricion = new Nutricion(barra1, barra2, barra3);
+        nutricion.mostrarDatosNutricionales(caloria,proteina,grasa);*/
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.favorito:
+                if(bandera){
+                    item.setIcon(ContextCompat.getDrawable(this, R.drawable.estrellasf));
+                    bandera = false;
+                }
+                else{
+                    item.setIcon(ContextCompat.getDrawable(this, R.drawable.estrellaf));
+                    bandera = true;
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }
