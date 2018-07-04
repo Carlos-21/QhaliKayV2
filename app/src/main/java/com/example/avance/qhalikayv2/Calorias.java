@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Componente.AlimentoDAO;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Alimento;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Carta;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IAlimentoDAO;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -58,6 +59,8 @@ public class Calorias extends AppCompatActivity implements View.OnClickListener 
                                      break;
             case R.id.brocoli :   llamarActividadVegetales(intent, cartas.get(0));
                                   break;
+            case R.id.berenjena :   llamarActividadVegetales(intent, cartas.get(1));
+                break;
         }
     }
 
@@ -92,16 +95,17 @@ public class Calorias extends AppCompatActivity implements View.OnClickListener 
             i++;
         }
 
+
     }
 
     private void mostrarComponentes(){
-        modelo.mostrarVegetales(cartas, this);
+        modelo.mostrarVegetales(cartas);
     }
 
     private void llamarActividadVegetales(Intent intent, Carta carta){
         intent = new Intent(this, Vegetales.class);
 
-        intent.putExtra("imagen", (Serializable) carta.getFoto());
+        intent.putExtra("imagen",carta.getAlimento().getImagen());
         intent.putExtra("caloria",carta.getAlimento().getCaloria());
         intent.putExtra("grasa",carta.getAlimento().getGrasa());
         intent.putExtra("proteina",carta.getAlimento().getProteina());

@@ -4,9 +4,9 @@ import android.widget.ProgressBar;
 
 public class Hilo extends Thread{
     private ProgressBar barra;
-    private int dato;
+    private Double dato;
 
-    public Hilo(ProgressBar barra, int dato){
+    public Hilo(ProgressBar barra, Double dato){
         this.barra = barra;
         this.dato = dato;
     }
@@ -17,7 +17,7 @@ public class Hilo extends Thread{
 
         while(progreso < dato) {
             try {
-                progreso += 5;
+                progreso += 5.0;
                 barra.setProgress(progreso);
                 sleep(200);
             }

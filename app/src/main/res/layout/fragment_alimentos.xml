@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo"
-    tools:context=".Calorias">
+    tools:context=".Pestañas.AlimentosFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="47dp"
@@ -17,11 +17,11 @@
 
         <ImageButton
             android:id="@+id/botonInicio"
+            android:src="@drawable/inicio"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/botones"
-            app:srcCompat="@drawable/inicio" />
+            android:background="@color/botones" />
 
         <ImageButton
             android:id="@+id/botonCalorias"
@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/botonSeleccionado"
-            app:srcCompat="@drawable/calorias" />
+            android:src="@drawable/calorias" />
 
         <ImageButton
             android:id="@+id/botonComidas"
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/botones"
-            app:srcCompat="@drawable/comida" />
+            android:src="@drawable/comida" />
 
         <ImageButton
             android:id="@+id/botonEjercicios"
@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/botones"
-            app:srcCompat="@drawable/ejercicio" />
+            android:src="@drawable/ejercicio" />
 
         <ImageButton
             android:id="@+id/botonAyuda"
@@ -53,7 +53,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/botones"
-            app:srcCompat="@drawable/ayuda" />
+            android:src="@drawable/ayuda" />
 
         <ImageButton
             android:id="@+id/botonSalir"
@@ -61,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/botones"
-            app:srcCompat="@drawable/salir" />
+            android:src="@drawable/salir" />
 
     </LinearLayout>
 

@@ -7,8 +7,9 @@ import com.example.avance.qhalikayv2.Calorias;
 import java.util.ArrayList;
 
 public interface IAlimentoDAO {
-    public ArrayList<Alimento> listarVegetales();
-    public ArrayList<Alimento> listarFrutas();
-    public void mostrarVegetales(ArrayList<Carta> cartaVegetal, Calorias calorias);
-    public void mostrarFrutas(ArrayList<Carta> cartaFruta, Calorias calorias);
+    public void mostrarVegetales(ArrayList<Carta> cartaVegetal);
+    public void mostrarFrutas(ArrayList<Carta> cartaFruta);
+    public void listarVegetales(ArrayList<Carta> cartaVegetal);
+    public void listarFrutas(ArrayList<Carta> cartaFruta);
+
 }

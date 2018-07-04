@@ -13,7 +13,7 @@ public class Nutricion {
         this.barra3 = barra3;
     }
 
-    public void mostrarDatosNutricionales(int dato1, int dato2, int dato3){
+    public void mostrarDatosNutricionales(Double dato1, Double dato2, Double dato3){
         barra1.setProgress(0);
         barra2.setProgress(0);
         barra3.setProgress(0);

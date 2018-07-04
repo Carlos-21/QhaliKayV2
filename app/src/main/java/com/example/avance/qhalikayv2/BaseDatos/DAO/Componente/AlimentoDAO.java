@@ -14,155 +14,75 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class AlimentoDAO implements IAlimentoDAO, OnCompleteListener<QuerySnapshot>{
-    private ArrayList<Alimento> vegetales;
+public class AlimentoDAO implements IAlimentoDAO{
 
     @Override
-    public ArrayList<Alimento> listarVegetales() {
-        vegetales = new ArrayList<>();
+    public void mostrarVegetales(ArrayList<Carta> cartaVegetal) {
+        for(Carta carta : cartaVegetal){
+            carta.setAlimento(new Alimento());
+        }
 
+        listarVegetales(cartaVegetal);
+    }
+
+    @Override
+    public void mostrarFrutas(ArrayList<Carta> cartaFruta) {
+
+    }
+
+    @Override
+    public void listarVegetales(final ArrayList<Carta> cartaVegetal) {
         FirebaseFirestore database = Conexion.getCloudBase();
-        /*database.collection("Vegetales")
-                .get()
-                .addOnCompleteListener(this);*/
+        CollectionReference coleccion = database.collection("Vegetales");
 
-        /*database.collection("Vegetales")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                System.out.println("Documento : "+ document.getData());
-                            }
-                        } else {
-                            Log.d("documento", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });*/
-
-        DocumentReference doc = database.document("Vegetales/vegetal1");
-        doc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        coleccion.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()){
-                    /*String cadena = documentSnapshot.getString("nombre");
-                    long calorias = documentSnapshot.getLong("caloria");
-                    System.out.println("Nombre documento : "+cadena);
-                    System.out.println("Caloria cantidad : "+calorias);*/
-                    Alimento al = documentSnapshot.toObject(Alimento.class);
-                    System.out.println("Nombre : "+al.getNombre());
-                    System.out.println("Caloria : "+al.getCaloria());
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    for (DocumentSnapshot documento : task.getResult()) {
+                        Alimento auxiliar = documento.toObject(Alimento.class);
 
+                        if(i<5){
+                            cartaVegetal.get(i).getAlimento().setImagen(auxiliar.getImagen());
+                            cartaVegetal.get(i).getAlimento().setProteina(auxiliar.getProteina());
+                            cartaVegetal.get(i).getAlimento().setGrasa(auxiliar.getGrasa());
+                            cartaVegetal.get(i).getAlimento().setCaloria(auxiliar.getCaloria());
+                            cartaVegetal.get(i).getAlimento().setNombre(auxiliar.getNombre());
+
+                            Picasso.get().load(auxiliar.getImagen()).into(cartaVegetal.get(i).getFoto());
+                            cartaVegetal.get(i).getTexto().setText((CharSequence) auxiliar.getNombre());
+                            i++;
+                        }
+
+                    }
                 }
                 else{
-                    System.out.println("Error documento : .........");
+                    System.out.println("error................");
                 }
-
             }
         });
 
-        System.out.println("Cantidad 2 : ................."+vegetales.size());
-
-        return vegetales;
     }
 
     @Override
-    public ArrayList<Alimento> listarFrutas() {
-        final ArrayList<Alimento> alimentos = new ArrayList<>();
+    public void listarFrutas(ArrayList<Carta> cartaFruta) {
 
-        FirebaseFirestore database = Conexion.getCloudBase();
-        database.collection("Frutas")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot documento : task.getResult()) {
-                                Alimento auxiliar = documento.toObject(Alimento.class);
-                                alimentos.add(auxiliar);
-                            }
-                        }
-                    }
-                });
-
-        return alimentos;
-    }
-
-    @Override
-    public void mostrarVegetales(ArrayList<Carta> cartaVegetal, Calorias calorias) {
-        ArrayList<Alimento> vegetales = listarVegetales();
-        StorageReference storage = Conexion.getStorage().child("Vegetales");
-
-        int i = 0;
-
-        for(String cadena : Direccion.vegetales){
-
-            Glide.with(calorias)
-                    .using(new FirebaseImageLoader())
-                    .load(storage.child("/"+cadena))
-                    .into(cartaVegetal.get(i).getFoto());
-
-            /*cartaVegetal.get(i).setAlimento(vegetales.get(i));
-            cartaVegetal.get(i).getTexto().setText((CharSequence) vegetales.get(i).getNombre());*/
-
-            i++;
-        }
-
-    }
-
-    @Override
-    public void mostrarFrutas(ArrayList<Carta> cartaFruta, Calorias calorias) {
-        ArrayList<Alimento> frutas = listarFrutas();
-        StorageReference storage = Conexion.getStorage().child("Frutas");
-
-        int i = 0;
-
-        while(vegetales == null){
-
-        }
-
-        for(String cadena : Direccion.vegetales){
-
-            Glide.with(calorias)
-                    .using(new FirebaseImageLoader())
-                    .load(storage.child("/"+cadena))
-                    .into(cartaFruta.get(i).getFoto());
-
-            cartaFruta.get(i).setAlimento(frutas.get(i));
-            cartaFruta.get(i).getTexto().setText((CharSequence) frutas.get(i).getNombre());
-
-            i++;
-        }
-    }
-
-    @Override
-    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-        ArrayList<Alimento> alimentos = new ArrayList<>();
-        if (task.isSuccessful()) {
-            for (DocumentSnapshot documento : task.getResult()) {
-
-                //Map<String, Object> user = documento.getData();
-                Alimento auxiliar = new Alimento();
-                auxiliar.setNombre(documento.getString("nombre"));
-                System.out.println("Objeto : " + auxiliar);
-                System.out.println("Alimento : "+auxiliar.getNombre());
-                alimentos.add(auxiliar);
-            }
-
-        }
-        else{
-            System.out.println("Error......................");
-        }
-        vegetales = alimentos;
     }
 }
