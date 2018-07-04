@@ -7,43 +7,25 @@
     android:background="@color/fondo"
     tools:context=".Login">
 
-    <ImageView
-        android:id="@+id/labelUsuario"
-        android:layout_width="38dp"
-        android:layout_height="46dp"
-        android:layout_alignStart="@+id/labelClave"
-        android:layout_alignTop="@+id/textoUsuario"
-        android:background="@color/label"
-        app:srcCompat="@drawable/usuario" />
-
-    <ImageView
-        android:id="@+id/labelClave"
-        android:layout_width="40dp"
-        android:layout_height="44dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/textoClave"
-        android:layout_marginStart="51dp"
-        android:background="@color/label"
-        app:srcCompat="@drawable/clave" />
-
     <EditText
         android:id="@+id/textoUsuario"
-        android:layout_width="wrap_content"
+        android:layout_width="251dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="62dp"
-        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"
+        android:drawableLeft="@drawable/usuario"
         android:ems="10"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/textoClave"
-        android:layout_width="wrap_content"
+        android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textoUsuario"
         android:layout_marginTop="141dp"
+        android:drawableLeft="@drawable/clave"
         android:ems="10"
         android:inputType="textPassword" />
 
@@ -52,8 +34,8 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/signInButton"
-        android:layout_marginTop="204dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="259dp"
         android:background="@color/botonIngresar"
         android:drawableLeft="@drawable/ingresar"
         android:drawablePadding="2dp"
@@ -66,9 +48,9 @@
         android:id="@+id/registrarse"
         android:layout_width="196dp"
         android:layout_height="29dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="194dp"
+        android:layout_marginTop="210dp"
         android:text="¿Eres nuevo?, regístrate"
         android:textColor="?attr/colorPrimaryDark"
         android:textSize="18sp" />
@@ -77,9 +59,9 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="74dp"
-        android:layout_alignEnd="@+id/registrarse"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="128dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="184dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp" />
 
@@ -88,8 +70,8 @@
         android:layout_width="179dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/loginButton"
-        android:layout_marginBottom="69dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="104dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -15,9 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TabVer"
-            android:label="Login"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Login"
+            android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,9 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
-            android:label="Datos Personales" />
-        <activity android:name=".DatosPersonales" />
+            android:name=".TabVer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DatosPersonales"
+            android:label="Datos Personales"/>
         <activity
             android:name=".Vegetales"
             android:label="Vegetales"

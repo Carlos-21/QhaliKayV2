@@ -1,19 +1,28 @@
 package com.example.avance.qhalikayv2;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Componente.UsuarioDAO;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Usuario;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IUsuarioDAO;
+import com.example.avance.qhalikayv2.Propiedad.HiloProgreso;
+import com.example.avance.qhalikayv2.Propiedad.HiloUsuario;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -51,26 +60,46 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
 
     public static final int SIGN_IN_CODE = 777;
 
+
+    //
+    private IUsuarioDAO modelo;
+    private EditText user;
+    private EditText clave;
+
+    //
+    ProgressDialog progreso;
+
+
+    private Usuario aaf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
+
+        modelo = new UsuarioDAO();
 
         usuarioNuevo = (TextView)findViewById(R.id.registrarse);
         usuarioNuevo.setOnClickListener(this);
 
         botonRegistrar = (Button)findViewById(R.id.botonIngresar);
         botonRegistrar.setOnClickListener(this);
+
+        user = (EditText)findViewById(R.id.textoUsuario);
+        clave = (EditText)findViewById(R.id.textoClave);
+
         facebook();
         google();
+
+
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent;
+        Intent intent = null;
         switch (v.getId()){
-            case R.id.botonIngresar :   intent = new Intent(this, DatosPersonales.class);
-                                        startActivity(intent);
+            case R.id.botonIngresar :   existeUsuario(intent);
                                         break;
 
             case R.id.registrarse :     intent = new Intent(this, FormularioRegistrar.class);
@@ -78,6 +107,51 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
                                         break;
         }
     }
+
+    private void existeUsuario(final Intent intent){
+        final Usuario auxiliar = new Usuario();
+        auxiliar.setUsuario(user.getText().toString());
+        auxiliar.setContraseña(user.getText().toString());
+
+        HiloUsuario hilo1 = new HiloUsuario(modelo,auxiliar);
+        hilo1.start();
+
+        progreso = new ProgressDialog(Login.this);
+        progreso.setMessage("Autentificando..."); // Setting Message
+        progreso.setTitle("Verficación de usuario"); // Setting Title
+        progreso.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progreso.show();
+        progreso.setCancelable(false);
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Thread.sleep(10000);
+                    llamarActividadDatosPersonales(intent, auxiliar);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                progreso.dismiss();
+            }
+        }).start();
+
+    }
+
+    private void llamarActividadDatosPersonales(Intent intent, Usuario usuario){
+
+
+        intent = new Intent(this, DatosPersonales.class);
+
+        intent.putExtra("nombres", usuario.getNombre());
+        intent.putExtra("apellidos", usuario.getApellido());
+        intent.putExtra("genero", usuario.getGenero());
+        intent.putExtra("altura", usuario.getAltura());
+        intent.putExtra("peso", usuario.getPeso());
+        intent.putExtra("foto", usuario.getFoto());
+
+        startActivity(intent);
+    }
+
 
     private void facebook(){
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

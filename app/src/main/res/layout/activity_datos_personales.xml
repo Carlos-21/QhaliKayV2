@@ -65,4 +65,114 @@
 
     </LinearLayout>
 
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/fotoUsuarioDP"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="106dp"
+        android:layout_height="39dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView16"
+        android:layout_marginBottom="255dp"
+        android:text="Apellidos"
+        android:textColor="@color/labelTexto"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="106dp"
+        android:layout_height="39dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView11"
+        android:layout_marginBottom="73dp"
+        android:text="Peso"
+        android:textColor="@color/labelTexto"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="106dp"
+        android:layout_height="37dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView11"
+        android:layout_marginBottom="134dp"
+        android:text="Altura"
+        android:textColor="@color/labelTexto"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="106dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView11"
+        android:layout_marginBottom="193dp"
+        android:text="Género"
+        android:textColor="@color/labelTexto"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textoPesoDP"
+        android:layout_width="181dp"
+        android:layout_height="38dp"
+        android:layout_alignStart="@+id/textoNombreDP"
+        android:layout_alignTop="@+id/textView12"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textoAlturaDP"
+        android:layout_width="181dp"
+        android:layout_height="38dp"
+        android:layout_alignStart="@+id/textoNombreDP"
+        android:layout_alignTop="@+id/textView15"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textoGeneroDP"
+        android:layout_width="181dp"
+        android:layout_height="38dp"
+        android:layout_alignStart="@+id/textoNombreDP"
+        android:layout_alignTop="@+id/textView14"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textoApellidoDP"
+        android:layout_width="181dp"
+        android:layout_height="38dp"
+        android:layout_alignStart="@+id/textoNombreDP"
+        android:layout_alignTop="@+id/textView11"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textoNombreDP"
+        android:layout_width="181dp"
+        android:layout_height="38dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView16"
+        android:layout_marginEnd="43dp"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="106dp"
+        android:layout_height="38dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="246dp"
+        android:text="Nombres"
+        android:textColor="@color/labelTexto"
+        android:textSize="20sp" />
+
 </RelativeLayout>
