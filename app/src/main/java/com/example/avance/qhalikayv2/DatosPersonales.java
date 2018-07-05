@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Componente.UsuarioDAO;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IUsuarioDAO;
 import com.squareup.picasso.Picasso;
 
 public class DatosPersonales extends AppCompatActivity implements View.OnClickListener {
@@ -25,38 +27,16 @@ public class DatosPersonales extends AppCompatActivity implements View.OnClickLi
     private TextView peso;
     private ImageView foto;
 
+    private IUsuarioDAO modelo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_personales);
 
+        Inicializar();
 
-        botonInicio = (ImageButton)findViewById(R.id.botonInicio);
-        botonInicio.setOnClickListener(this);
-
-        botonCalorias = (ImageButton)findViewById(R.id.botonCalorias);
-        botonCalorias.setOnClickListener(this);
-
-        botonComidas = (ImageButton)findViewById(R.id.botonComidas);
-        botonComidas.setOnClickListener(this);
-
-        botonEjercicios = (ImageButton)findViewById(R.id.botonEjercicios);
-        botonEjercicios.setOnClickListener(this);
-
-        botonAyuda = (ImageButton)findViewById(R.id.botonAyuda);
-        botonAyuda.setOnClickListener(this);
-
-        botonSalir = (ImageButton)findViewById(R.id.botonSalir);
-        botonSalir.setOnClickListener(this);
-
-
-        nombres = (TextView)findViewById(R.id.textoNombreDP);
-        apellidos = (TextView)findViewById(R.id.textoApellidoDP);
-        genero = (TextView)findViewById(R.id.textoGeneroDP);
-        altura = (TextView)findViewById(R.id.textoAlturaDP);
-        peso = (TextView)findViewById(R.id.textoPesoDP);
-        foto = (ImageView)findViewById(R.id.fotoUsuarioDP);
-
+        llamarModelo();
 
         Intent inten = getIntent();
         Bundle bun = inten.getExtras();
@@ -84,5 +64,40 @@ public class DatosPersonales extends AppCompatActivity implements View.OnClickLi
                                         startActivity(intent);
                                         break;
         }
+    }
+
+    private void Inicializar(){
+        modelo = new UsuarioDAO();
+
+        botonInicio = (ImageButton)findViewById(R.id.botonInicio);
+        botonInicio.setOnClickListener(this);
+
+        botonCalorias = (ImageButton)findViewById(R.id.botonCalorias);
+        botonCalorias.setOnClickListener(this);
+
+        botonComidas = (ImageButton)findViewById(R.id.botonComidas);
+        botonComidas.setOnClickListener(this);
+
+        botonEjercicios = (ImageButton)findViewById(R.id.botonEjercicios);
+        botonEjercicios.setOnClickListener(this);
+
+        botonAyuda = (ImageButton)findViewById(R.id.botonAyuda);
+        botonAyuda.setOnClickListener(this);
+
+        botonSalir = (ImageButton)findViewById(R.id.botonSalir);
+        botonSalir.setOnClickListener(this);
+
+
+        nombres = (TextView)findViewById(R.id.textoNombreDP);
+        apellidos = (TextView)findViewById(R.id.textoApellidoDP);
+        genero = (TextView)findViewById(R.id.textoGeneroDP);
+        altura = (TextView)findViewById(R.id.textoAlturaDP);
+        peso = (TextView)findViewById(R.id.textoPesoDP);
+        foto = (ImageView)findViewById(R.id.fotoUsuarioDP);
+    }
+
+    private void llamarModelo(){
+        modelo.cantidadFavorito();
+        modelo.nombresFavoritos();
     }
 }

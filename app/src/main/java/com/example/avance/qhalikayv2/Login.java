@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.avance.qhalikayv2.Ayuda.DocumentoUsuario;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Componente.UsuarioDAO;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Usuario;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IUsuarioDAO;
@@ -126,7 +127,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(1500);
                     llamarActividadDatosPersonales(intent, auxiliar);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -138,7 +139,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
     }
 
     private void llamarActividadDatosPersonales(Intent intent, Usuario usuario){
-
+        DocumentoUsuario.usuario = usuario;
 
         intent = new Intent(this, DatosPersonales.class);
 

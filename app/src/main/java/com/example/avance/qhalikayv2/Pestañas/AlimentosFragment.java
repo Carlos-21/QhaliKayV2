@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.avance.qhalikayv2.Ayuda.DocumentoUsuario;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Componente.AlimentoDAO;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Carta;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IAlimentoDAO;
@@ -105,6 +106,9 @@ public class AlimentosFragment extends Fragment implements View.OnClickListener 
         intent.putExtra("caloria",carta.getAlimento().getCaloria());
         intent.putExtra("grasa",carta.getAlimento().getGrasa());
         intent.putExtra("proteina",carta.getAlimento().getProteina());
+        intent.putExtra("nombreAlimento", carta.getAlimento().getNombre());
+
+        DocumentoUsuario.banderaAlimento = DocumentoUsuario.existeFavorito(carta.getAlimento().getNombre());
 
         startActivity(intent);
     }

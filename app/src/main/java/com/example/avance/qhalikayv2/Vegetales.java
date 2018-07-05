@@ -11,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.avance.qhalikayv2.Ayuda.DocumentoUsuario;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Componente.UsuarioDAO;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Favorito;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IUsuarioDAO;
 import com.example.avance.qhalikayv2.Propiedad.Nutricion;
 import com.squareup.picasso.Picasso;
 
@@ -25,22 +29,15 @@ public class Vegetales extends AppCompatActivity {
     private TextView texto1;
     private TextView texto2;
     private TextView texto3;
-    private boolean bandera;
+    private Favorito favorito;
+    private IUsuarioDAO modelo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vegetales);
 
-        barra1 = (ProgressBar)findViewById(R.id.barra1);
-        barra2 = (ProgressBar)findViewById(R.id.barra2);
-        barra3 = (ProgressBar)findViewById(R.id.barra3);
-
-        foto = (ImageView)findViewById(R.id.fotoVegetal);
-
-        texto1 = (TextView)findViewById(R.id.textoCantidadCaloria);
-        texto2 = (TextView)findViewById(R.id.textoCantidadGrasa);
-        texto3 = (TextView)findViewById(R.id.textoCantidadProteina);
+        Inicializar();
 
         Intent inten = getIntent();
         Bundle bun = inten.getExtras();
@@ -52,21 +49,27 @@ public class Vegetales extends AppCompatActivity {
             grasa = (Double) bun.get("grasa");
             proteina = (Double) bun.get("proteina");
 
+            favorito.setIdAlimento((String)bun.get("nombreAlimento"));
+
             texto1.setText(String.valueOf(caloria));
             texto2.setText(String.valueOf(grasa));
             texto3.setText(String.valueOf(proteina));
 
         }
 
-        bandera = false;
         Nutricion nutricion = new Nutricion(barra1, barra2, barra3);
         nutricion.mostrarDatosNutricionales(caloria,grasa,proteina);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actionbar, menu);
+        getMenuInflater().inflate(R.menu.actionbar, menu);
+        if(DocumentoUsuario.banderaAlimento){
+            menu.findItem(R.id.favorito).setIcon(ContextCompat.getDrawable(this, R.drawable.estrellaf));
+        }
+        else{
+            menu.findItem(R.id.favorito).setIcon(ContextCompat.getDrawable(this, R.drawable.estrellasf));
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -74,13 +77,14 @@ public class Vegetales extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.favorito:
-                if(bandera){
+                if(DocumentoUsuario.banderaAlimento){
                     item.setIcon(ContextCompat.getDrawable(this, R.drawable.estrellasf));
-                    bandera = false;
+                    DocumentoUsuario.banderaAlimento = false;
                 }
                 else{
                     item.setIcon(ContextCompat.getDrawable(this, R.drawable.estrellaf));
-                    bandera = true;
+                    DocumentoUsuario.banderaAlimento = true;
+                    llamarModelo();
                 }
                 return true;
             default:
@@ -88,5 +92,25 @@ public class Vegetales extends AppCompatActivity {
         }
     }
 
+    private void Inicializar(){
+        favorito = new Favorito();
+        modelo = new UsuarioDAO();
 
+        barra1 = (ProgressBar)findViewById(R.id.barra1);
+        barra2 = (ProgressBar)findViewById(R.id.barra2);
+        barra3 = (ProgressBar)findViewById(R.id.barra3);
+
+        foto = (ImageView)findViewById(R.id.fotoVegetal);
+
+        texto1 = (TextView)findViewById(R.id.textoCantidadCaloria);
+        texto2 = (TextView)findViewById(R.id.textoCantidadGrasa);
+        texto3 = (TextView)findViewById(R.id.textoCantidadProteina);
+
+    }
+
+    private void llamarModelo(){
+        modelo.añadirFavorito(DocumentoUsuario.usuario, favorito);
+        modelo.cantidadFavorito();
+        modelo.nombresFavoritos();
+    }
 }

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
+import com.example.avance.qhalikayv2.Ayuda.DocumentoUsuario;
 import com.example.avance.qhalikayv2.BaseDatos.Conexion.Conexion;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Alimento;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Carta;
@@ -84,5 +85,56 @@ public class AlimentoDAO implements IAlimentoDAO{
     @Override
     public void listarFrutas(ArrayList<Carta> cartaFruta) {
 
+    }
+
+    @Override
+    public void mostrarFavoritos(ArrayList<Carta> cartaFavorito) {
+        for(Carta carta : cartaFavorito){
+            carta.setAlimento(new Alimento());
+        }
+
+        listarFavoritos(cartaFavorito);
+    }
+
+    @Override
+    public void listarFavoritos(final ArrayList<Carta> cartaFavorito) {
+        FirebaseFirestore database = Conexion.getCloudBase();
+        CollectionReference coleccion = database.collection("Vegetales");
+
+        coleccion.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    int j = 0;
+                    for (DocumentSnapshot documento : task.getResult()) {
+                        Alimento auxiliar = documento.toObject(Alimento.class);
+
+                        if(i<5){
+                            if(j<DocumentoUsuario.cantidadFavorito){
+                                System.out.println("Cnatidad cafaf" + DocumentoUsuario.cantidadFavorito);
+                                if(DocumentoUsuario.favoritos.get(j).equals(auxiliar.getNombre())){
+                                    cartaFavorito.get(i).getAlimento().setImagen(auxiliar.getImagen());
+                                    cartaFavorito.get(i).getAlimento().setProteina(auxiliar.getProteina());
+                                    cartaFavorito.get(i).getAlimento().setGrasa(auxiliar.getGrasa());
+                                    cartaFavorito.get(i).getAlimento().setCaloria(auxiliar.getCaloria());
+                                    cartaFavorito.get(i).getAlimento().setNombre(auxiliar.getNombre());
+
+                                    Picasso.get().load(auxiliar.getImagen()).into(cartaFavorito.get(i).getFoto());
+                                    cartaFavorito.get(i).getTexto().setText((CharSequence) auxiliar.getNombre());
+
+                                    i++;
+                                    j++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                else{
+                    System.out.println("error................");
+                }
+            }
+        });
     }
 }

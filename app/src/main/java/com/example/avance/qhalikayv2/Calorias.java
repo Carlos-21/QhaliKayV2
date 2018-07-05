@@ -109,6 +109,7 @@ public class Calorias extends AppCompatActivity implements View.OnClickListener 
         intent.putExtra("caloria",carta.getAlimento().getCaloria());
         intent.putExtra("grasa",carta.getAlimento().getGrasa());
         intent.putExtra("proteina",carta.getAlimento().getProteina());
+        intent.putExtra("nombreAlimento", carta.getAlimento().getNombre());
 
         startActivity(intent);
     }

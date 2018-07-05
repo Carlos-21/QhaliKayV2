@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.avance.qhalikayv2.Ayuda.DocumentoUsuario;
 import com.example.avance.qhalikayv2.Pestañas.AlimentosFragment;
 import com.example.avance.qhalikayv2.Pestañas.FavoritosFragment;
 import com.example.avance.qhalikayv2.Pestañas.PlatosFragment;
@@ -51,9 +52,16 @@ public class TabVer extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new AlimentosFragment(), "Alimentos");
-        adapter.addFragment(new PlatosFragment(), "Platos");
-        adapter.addFragment(new FavoritosFragment(), "Favoritos");
+        if(DocumentoUsuario.cantidadFavorito>0){
+            adapter.addFragment(new FavoritosFragment(), "Favoritos");
+            adapter.addFragment(new AlimentosFragment(), "Alimentos");
+            adapter.addFragment(new PlatosFragment(), "Platos");
+        }
+        else{
+            adapter.addFragment(new AlimentosFragment(), "Alimentos");
+            adapter.addFragment(new PlatosFragment(), "Platos");
+            adapter.addFragment(new FavoritosFragment(), "Favoritos");
+        }
         viewPager.setAdapter(adapter);
     }
 }
