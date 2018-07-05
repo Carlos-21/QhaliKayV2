@@ -220,6 +220,161 @@
         </LinearLayout>
     </HorizontalScrollView>
 
+    <HorizontalScrollView
+        android:id="@+id/carruselFrutas"
+        android:layout_width="367dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="83dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tarjetaF1"
+                android:layout_width="match_parent"
+                android:layout_height="179dp"
+                card_view:cardCornerRadius="6dp"
+                card_view:cardElevation="10dp"
+                card_view:cardUseCompatPadding="true">
+                <!--By Mark Gurney [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons -->
+                <ImageView
+                    android:id="@+id/fruta1"
+                    android:layout_width="100dp"
+                    android:layout_height="105dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:id="@+id/textoFrutal"
+                    android:layout_width="101dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:background="#8c000000"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:textColor="#ffe3e3e3"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tarjetaF2"
+                android:layout_width="match_parent"
+                android:layout_height="179dp"
+                card_view:cardCornerRadius="6dp"
+                card_view:cardElevation="10dp"
+                card_view:cardUseCompatPadding="true">
+                <!--By Mark Gurney [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons -->
+                <ImageView
+                    android:id="@+id/fruta2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:id="@+id/textoFruta2"
+                    android:layout_width="101dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:background="#8c000000"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:textColor="#ffe3e3e3"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tarjetaF3"
+                android:layout_width="match_parent"
+                android:layout_height="179dp"
+                card_view:cardCornerRadius="6dp"
+                card_view:cardElevation="10dp"
+                card_view:cardUseCompatPadding="true">
+                <!--By Mark Gurney [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons -->
+                <ImageView
+                    android:id="@+id/fruta3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:id="@+id/textoFruta3"
+                    android:layout_width="101dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:background="#8c000000"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:textColor="#ffe3e3e3"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tarjetaF4"
+                android:layout_width="match_parent"
+                android:layout_height="179dp"
+                card_view:cardCornerRadius="6dp"
+                card_view:cardElevation="10dp"
+                card_view:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:id="@+id/fruta4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/textoFruta4"
+                    android:layout_width="101dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:background="#8c000000"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:textColor="#ffe3e3e3"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tarjetaF5"
+                android:layout_width="match_parent"
+                android:layout_height="179dp"
+                card_view:cardCornerRadius="6dp"
+                card_view:cardElevation="10dp"
+                card_view:cardUseCompatPadding="true">
+
+                <ImageView
+                    android:id="@+id/fruta5"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:id="@+id/textoFruta5"
+                    android:layout_width="101dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:background="#8c000000"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:textColor="#ffe3e3e3"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <TextView
         android:id="@+id/vegetalesMas"
         android:layout_width="wrap_content"
@@ -232,13 +387,33 @@
         android:textSize="18sp" />
 
     <TextView
+        android:id="@+id/frutasMas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/carruselFrutas"
+        android:layout_alignEnd="@+id/carruselVegetales"
+        android:text="@string/verMas"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textSize="18sp" />
+
+    <TextView
         android:id="@+id/labelVegetales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/vegetalesMas"
         android:layout_alignStart="@+id/carruselVegetales"
-        android:layout_marginTop="31dp"
         android:text="Vegetales"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/labelFrutas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/carruselVegetales"
+        android:layout_marginBottom="274dp"
+        android:text="Frutas"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 

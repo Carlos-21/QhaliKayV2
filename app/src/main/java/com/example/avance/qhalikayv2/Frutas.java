@@ -17,7 +17,7 @@ import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IUsuarioDAO;
 import com.example.avance.qhalikayv2.Propiedad.Nutricion;
 import com.squareup.picasso.Picasso;
 
-public class Vegetales extends AppCompatActivity {
+public class Frutas extends AppCompatActivity {
     private ProgressBar barra1;
     private ProgressBar barra2;
     private ProgressBar barra3;
@@ -34,8 +34,7 @@ public class Vegetales extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vegetales);
-
+        setContentView(R.layout.activity_frutas);
         Inicializar();
 
         Intent inten = getIntent();
@@ -95,9 +94,9 @@ public class Vegetales extends AppCompatActivity {
         favorito = new Favorito();
         modelo = new UsuarioDAO();
 
-        barra1 = (ProgressBar)findViewById(R.id.barra1);
-        barra2 = (ProgressBar)findViewById(R.id.barra2);
-        barra3 = (ProgressBar)findViewById(R.id.barra3);
+        barra1 = (ProgressBar)findViewById(R.id.barraF1);
+        barra2 = (ProgressBar)findViewById(R.id.barraF2);
+        barra3 = (ProgressBar)findViewById(R.id.barraF3);
 
         foto = (ImageView)findViewById(R.id.fotoFruta);
 
@@ -112,4 +111,5 @@ public class Vegetales extends AppCompatActivity {
         modelo.cantidadFavorito();
         modelo.nombresFavoritos();
     }
+
 }

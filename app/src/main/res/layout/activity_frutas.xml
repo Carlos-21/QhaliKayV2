@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo"
-    tools:context=".Vegetales">
+    tools:context=".Frutas">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="47dp"
@@ -65,28 +66,28 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/barra1"
+        android:id="@+id/barraF1"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="230dp"
-        android:layout_toStartOf="@+id/barra3"
+        android:layout_toStartOf="@+id/barraF3"
         android:progress="50"
         android:progressDrawable="@drawable/barra" />
 
     <ProgressBar
-        android:id="@+id/barra2"
+        android:id="@+id/barraF2"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_alignTop="@+id/barra1"
-        android:layout_toEndOf="@+id/barra3"
+        android:layout_alignTop="@+id/barraF1"
+        android:layout_toEndOf="@+id/barraF3"
         android:progress="50"
         android:progressDrawable="@drawable/barra2" />
 
     <ProgressBar
-        android:id="@+id/barra3"
+        android:id="@+id/barraF3"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="110dp"
         android:layout_height="110dp"

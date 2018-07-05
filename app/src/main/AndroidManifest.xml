@@ -26,15 +26,16 @@
         <activity
             android:name=".TabVer"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DatosPersonales"
-            android:label="Datos Personales"/>
+        <activity
+            android:name=".DatosPersonales"
+            android:label="Datos Personales" />
         <activity
             android:name=".Vegetales"
             android:label="Vegetales"
-            android:parentActivityName=".Calorias">
+            android:parentActivityName=".TabVer">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Calorias" />
+                android:value=".TabVer" />
         </activity>
 
         <meta-data
@@ -65,7 +66,14 @@
         <activity
             android:name=".Calorias"
             android:label="@string/title_activity_tab_ver"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Frutas"
+            android:label="Frutas"
+            android:parentActivityName=".TabVer">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TabVer" />
+        </activity>
     </application>
 
 </manifest>

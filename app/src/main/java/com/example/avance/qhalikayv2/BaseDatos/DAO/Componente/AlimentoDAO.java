@@ -43,11 +43,6 @@ public class AlimentoDAO implements IAlimentoDAO{
     }
 
     @Override
-    public void mostrarFrutas(ArrayList<Carta> cartaFruta) {
-
-    }
-
-    @Override
     public void listarVegetales(final ArrayList<Carta> cartaVegetal) {
         FirebaseFirestore database = Conexion.getCloudBase();
         CollectionReference coleccion = database.collection("Vegetales");
@@ -83,8 +78,47 @@ public class AlimentoDAO implements IAlimentoDAO{
     }
 
     @Override
-    public void listarFrutas(ArrayList<Carta> cartaFruta) {
+    public void listarFrutas(final ArrayList<Carta> cartaFruta) {
+        FirebaseFirestore database = Conexion.getCloudBase();
+        CollectionReference coleccion = database.collection("Frutas");
 
+        coleccion.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    for (DocumentSnapshot documento : task.getResult()) {
+                        Alimento auxiliar = documento.toObject(Alimento.class);
+
+                        if(i<5){
+                            cartaFruta.get(i).getAlimento().setImagen(auxiliar.getImagen());
+                            cartaFruta.get(i).getAlimento().setProteina(auxiliar.getProteina());
+                            cartaFruta.get(i).getAlimento().setGrasa(auxiliar.getGrasa());
+                            cartaFruta.get(i).getAlimento().setCaloria(auxiliar.getCaloria());
+                            cartaFruta.get(i).getAlimento().setNombre(auxiliar.getNombre());
+
+                            Picasso.get().load(auxiliar.getImagen()).into(cartaFruta.get(i).getFoto());
+                            cartaFruta.get(i).getTexto().setText((CharSequence) auxiliar.getNombre());
+                            i++;
+                        }
+
+                    }
+                }
+                else{
+                    System.out.println("error................");
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public void mostrarFrutas(final ArrayList<Carta> cartaFruta) {
+        for(Carta carta : cartaFruta){
+            carta.setAlimento(new Alimento());
+        }
+
+        listarFrutas(cartaFruta);
     }
 
     @Override
