@@ -17,6 +17,8 @@ import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IUsuarioDAO;
 import com.example.avance.qhalikayv2.Propiedad.Nutricion;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class Frutas extends AppCompatActivity {
     private ProgressBar barra1;
     private ProgressBar barra2;
@@ -62,7 +64,7 @@ public class Frutas extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar, menu);
-        if(DocumentoUsuario.banderaAlimento){
+        if(DocumentoUsuario.banderaFruta){
             menu.findItem(R.id.favorito).setIcon(ContextCompat.getDrawable(this, R.drawable.estrellaf));
         }
         else{
@@ -75,13 +77,13 @@ public class Frutas extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.favorito:
-                if(DocumentoUsuario.banderaAlimento){
+                if(DocumentoUsuario.banderaFruta){
                     item.setIcon(ContextCompat.getDrawable(this, R.drawable.estrellasf));
-                    DocumentoUsuario.banderaAlimento = false;
+                    DocumentoUsuario.banderaFruta= false;
                 }
                 else{
                     item.setIcon(ContextCompat.getDrawable(this, R.drawable.estrellaf));
-                    DocumentoUsuario.banderaAlimento = true;
+                    DocumentoUsuario.banderaFruta = true;
                     llamarModelo();
                 }
                 return true;
@@ -109,6 +111,7 @@ public class Frutas extends AppCompatActivity {
     private void llamarModelo(){
         modelo.añadirFavorito(DocumentoUsuario.usuario, favorito);
         modelo.cantidadFavorito();
+        DocumentoUsuario.favoritos = new ArrayList<>();
         modelo.nombresFavoritos();
     }
 

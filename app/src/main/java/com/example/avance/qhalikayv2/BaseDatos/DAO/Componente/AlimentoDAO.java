@@ -122,18 +122,25 @@ public class AlimentoDAO implements IAlimentoDAO{
     }
 
     @Override
-    public void mostrarFavoritos(ArrayList<Carta> cartaFavorito) {
+    public void mostrarFavoritos(ArrayList<Carta> cartaFavorito, int tipo) {
         for(Carta carta : cartaFavorito){
             carta.setAlimento(new Alimento());
         }
 
-        listarFavoritos(cartaFavorito);
+        listarFavoritos(cartaFavorito, tipo);
     }
 
     @Override
-    public void listarFavoritos(final ArrayList<Carta> cartaFavorito) {
+    public void listarFavoritos(final ArrayList<Carta> cartaFavorito, int tipo) {
         FirebaseFirestore database = Conexion.getCloudBase();
-        CollectionReference coleccion = database.collection("Vegetales");
+        CollectionReference coleccion = null;
+
+        if(tipo == 1){
+            coleccion = database.collection("Vegetales");
+        }
+        else{
+            coleccion = database.collection("Frutas");
+        }
 
         coleccion.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -146,10 +153,7 @@ public class AlimentoDAO implements IAlimentoDAO{
 
                         if(i<5){
                             if(j<DocumentoUsuario.cantidadFavorito){
-                                System.out.println("Cnatidad cafaf" + DocumentoUsuario.cantidadFavorito);
-                                System.out.println("vEGETAL" + DocumentoUsuario.favoritos.get(j));
                                 if(DocumentoUsuario.existeFavorito(auxiliar.getNombre())){
-                                    System.out.println("entrar");
                                     cartaFavorito.get(i).getAlimento().setImagen(auxiliar.getImagen());
                                     cartaFavorito.get(i).getAlimento().setProteina(auxiliar.getProteina());
                                     cartaFavorito.get(i).getAlimento().setGrasa(auxiliar.getGrasa());

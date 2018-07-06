@@ -11,6 +11,6 @@ public interface IAlimentoDAO {
     public void mostrarFrutas(ArrayList<Carta> cartaFruta);
     public void listarVegetales(ArrayList<Carta> cartaVegetal);
     public void listarFrutas(ArrayList<Carta> cartaFruta);
-    public void listarFavoritos(ArrayList<Carta> cartaFavorito);
-    public void mostrarFavoritos(ArrayList<Carta> cartaFavorito);
+    public void listarFavoritos(ArrayList<Carta> cartaFavorito, int tipo);
+    public void mostrarFavoritos(ArrayList<Carta> cartaFavorito, int tipo);
 }
