@@ -171,7 +171,7 @@ public class AlimentosFragment extends Fragment implements View.OnClickListener 
         intent.putExtra("proteina",carta.getAlimento().getProteina());
         intent.putExtra("nombreAlimento", carta.getAlimento().getNombre());
 
-        DocumentoUsuario.banderaAlimento = DocumentoUsuario.existeFavorito(carta.getAlimento().getNombre());
+        DocumentoUsuario.banderaFruta = DocumentoUsuario.existeFavorito(carta.getAlimento().getNombre());
 
         startActivity(intent);
     }

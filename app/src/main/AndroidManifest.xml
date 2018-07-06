@@ -67,13 +67,15 @@
             android:name=".Calorias"
             android:label="@string/title_activity_tab_ver"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Frutas"
+        <activity
+            android:name=".Frutas"
             android:label="Frutas"
             android:parentActivityName=".TabVer">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TabVer" />
         </activity>
+        <activity android:name=".VegetalesVerMas"></activity>
     </application>
 
 </manifest>

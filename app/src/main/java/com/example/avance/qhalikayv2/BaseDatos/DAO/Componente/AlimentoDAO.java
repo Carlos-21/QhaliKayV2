@@ -147,7 +147,9 @@ public class AlimentoDAO implements IAlimentoDAO{
                         if(i<5){
                             if(j<DocumentoUsuario.cantidadFavorito){
                                 System.out.println("Cnatidad cafaf" + DocumentoUsuario.cantidadFavorito);
-                                if(DocumentoUsuario.favoritos.get(j).equals(auxiliar.getNombre())){
+                                System.out.println("vEGETAL" + DocumentoUsuario.favoritos.get(j));
+                                if(DocumentoUsuario.existeFavorito(auxiliar.getNombre())){
+                                    System.out.println("entrar");
                                     cartaFavorito.get(i).getAlimento().setImagen(auxiliar.getImagen());
                                     cartaFavorito.get(i).getAlimento().setProteina(auxiliar.getProteina());
                                     cartaFavorito.get(i).getAlimento().setGrasa(auxiliar.getGrasa());

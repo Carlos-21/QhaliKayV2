@@ -127,7 +127,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(1800);
                     llamarActividadDatosPersonales(intent, auxiliar);
                 } catch (Exception e) {
                     e.printStackTrace();

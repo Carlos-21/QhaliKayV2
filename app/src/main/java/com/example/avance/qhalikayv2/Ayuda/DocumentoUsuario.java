@@ -10,6 +10,7 @@ public class DocumentoUsuario {
     public static Usuario usuario;
     public static ArrayList<String> favoritos = new ArrayList<>();
     public static boolean banderaAlimento;
+    public static boolean banderaFruta;
 
     public static boolean existeFavorito(String alimento){
         for (String cadena : favoritos){
