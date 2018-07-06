@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide;
 import com.example.avance.qhalikayv2.Ayuda.DocumentoUsuario;
 import com.example.avance.qhalikayv2.BaseDatos.Conexion.Conexion;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Alimento;
+import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.AlimentoProcesado;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Datos.Carta;
 import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IAlimentoDAO;
 import com.example.avance.qhalikayv2.Calorias;
@@ -173,6 +174,39 @@ public class AlimentoDAO implements IAlimentoDAO{
                 }
                 else{
                     System.out.println("error................");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void buscarAlimentoNoProcesado(String codigoBarra, final AlimentoProcesado alimentoProcesado) {
+        FirebaseFirestore database = Conexion.getCloudBase();
+        CollectionReference coleccion = database.collection("Procesados");
+
+        DocumentReference alimentoP = coleccion.document(codigoBarra);
+
+        alimentoP.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        AlimentoProcesado auxiliar = document.toObject(AlimentoProcesado.class);
+
+                        alimentoProcesado.setCaloria(auxiliar.getCaloria());
+                        alimentoProcesado.setCantidad(auxiliar.getCantidad());
+                        alimentoProcesado.setDenominacion(auxiliar.getDenominacion());
+                        alimentoProcesado.setGrasa(auxiliar.getGrasa());
+                        alimentoProcesado.setImagen(auxiliar.getImagen());
+                        alimentoProcesado.setMarca(auxiliar.getMarca());
+                        alimentoProcesado.setProteina(auxiliar.getProteina());
+
+                    } else {
+                        ///
+                    }
+                } else {
+                    //
                 }
             }
         });

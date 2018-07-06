@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:layout_gravity="center"
@@ -75,7 +76,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TabVer" />
         </activity>
-        <activity android:name=".VegetalesVerMas"></activity>
+        <activity android:name=".VegetalesVerMas" />
+        <activity android:name=".RegistrarANP" />
+        <activity android:name=".Procesados"></activity>
     </application>
 
 </manifest>

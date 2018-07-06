@@ -63,6 +63,11 @@ public class DatosPersonales extends AppCompatActivity implements View.OnClickLi
             case R.id.botonCalorias :   intent = new Intent(this, TabVer.class);
                                         startActivity(intent);
                                         break;
+            case R.id.botonComidas :   intent = new Intent(this, RegistrarANP.class);
+                                         startActivity(intent);
+                                         break;
+            case R.id.botonSalir : System.exit(0);
+                                   break;
         }
     }
 
