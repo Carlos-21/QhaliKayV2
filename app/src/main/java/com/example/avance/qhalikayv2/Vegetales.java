@@ -17,6 +17,8 @@ import com.example.avance.qhalikayv2.BaseDatos.DAO.Diseño.IUsuarioDAO;
 import com.example.avance.qhalikayv2.Propiedad.Nutricion;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class Vegetales extends AppCompatActivity {
     private ProgressBar barra1;
     private ProgressBar barra2;
@@ -83,8 +85,8 @@ public class Vegetales extends AppCompatActivity {
                 else{
                     item.setIcon(ContextCompat.getDrawable(this, R.drawable.estrellaf));
                     DocumentoUsuario.banderaAlimento = true;
-                    llamarModelo();
                 }
+                llamarModelo();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -110,6 +112,7 @@ public class Vegetales extends AppCompatActivity {
     private void llamarModelo(){
         modelo.añadirFavorito(DocumentoUsuario.usuario, favorito);
         modelo.cantidadFavorito();
+        DocumentoUsuario.favoritos = new ArrayList<>();
         modelo.nombresFavoritos();
     }
 }
